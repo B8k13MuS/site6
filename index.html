@@ -3,19 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO и Мета-теги для соцсетей (Open Graph) -->
-    <title>Премиум веб-сайт | Главная</title>
-    <meta name="description" content="Пример ультрасовременного, адаптивного и доступного сайта с темной темой и анимациями." />
-    <meta property="og:title" content="Премиум веб-сайт" />
-    <meta property="og:description" content="Современный интерфейс, созданный по стандартам веб-разработки." />
-    <meta property="og:type" content="website" />
-
-    <!-- Подключение стилей анимации при скролле (AOS) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Подключение современных иконок Lucide -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
+    <title>Эксперт по автоматизации</title>
+    
     <style>
         /* CSS Переменные для дизайн-системы */
         *, *::before, *::after {
@@ -60,14 +49,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Доступность: подсветка элементов при навигации табом с клавиатуры */
         *:focus-visible {
             outline: none;
             box-shadow: var(--focus-ring);
             border-radius: 4px;
         }
 
-        /* Шапка сайта */
         header {
             background-color: var(--dark-header);
             color: #fff;
@@ -101,7 +88,6 @@
             gap: 20px;
         }
 
-        /* Навигация */
         nav {
             display: flex;
             gap: 24px;
@@ -121,7 +107,6 @@
             color: #fff;
         }
 
-        /* Кнопки переключения темы и меню */
         .btn-icon {
             background: none;
             border: 1px solid rgba(255,255,255,0.15);
@@ -133,6 +118,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
         }
 
         .btn-icon:hover {
@@ -144,7 +130,6 @@
             display: none;
         }
 
-        /* Главная сетка */
         main {
             max-width: 1200px;
             margin: 0 auto;
@@ -162,7 +147,6 @@
             gap: 30px;
         }
 
-        /* Карточки секций */
         section {
             background-color: var(--bg-card);
             padding: 35px;
@@ -186,7 +170,6 @@
             gap: 10px;
         }
 
-        /* Сетка Услуг */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -206,11 +189,6 @@
             box-shadow: 0 12px 20px rgba(0,0,0,0.05);
         }
 
-        .service-card i {
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-
         .service-card h3 {
             margin: 0 0 10px 0;
             font-size: 1.2rem;
@@ -222,7 +200,6 @@
             color: var(--text-muted);
         }
 
-        /* Интерактивная форма обратной связи */
         .form-group {
             margin-bottom: 20px;
             position: relative;
@@ -288,7 +265,6 @@
             margin-top: 15px;
         }
 
-        /* Сайдбар Контактов */
         .contact-link {
             display: flex;
             align-items: center;
@@ -307,11 +283,6 @@
             color: #fff;
         }
 
-        .contact-link i {
-            flex-shrink: 0;
-        }
-
-        /* Подвал */
         footer {
             background-color: var(--dark-header);
             color: #94a3b8;
@@ -322,7 +293,6 @@
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Адаптивный дизайн */
         @media (max-width: 992px) {
             main {
                 grid-template-columns: 1fr;
@@ -358,6 +328,12 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Эмодзи вместо иконок для надежности */
+        .icon {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
     </style>
 </head>
 <body>
@@ -365,21 +341,21 @@
     <header>
         <div class="header-container">
             <div class="logo-group">
-                <i data-lucide="code-2"></i>
+                <span class="icon">⚡</span>
                 <span>PremiumWeb</span>
             </div>
             <div class="header-controls">
                 <nav id="navMenu">
-                    <a href="#" class="active"><i data-lucide="home"></i>Главная</a>
-                    <a href="#"><i data-lucide="info"></i>О нас</a>
-                    <a href="#"><i data-lucide="briefcase"></i>Услуги</a>
-                    <a href="#"><i data-lucide="phone"></i>Контакты</a>
+                    <a href="#" class="active"><span class="icon">🏠</span>Главная</a>
+                    <a href="#"><span class="icon">ℹ️</span>О нас</a>
+                    <a href="#"><span class="icon">💼</span>Услуги</a>
+                    <a href="#"><span class="icon">📞</span>Контакты</a>
                 </nav>
                 <button class="btn-icon" id="themeToggle" aria-label="Переключить тему">
-                    <i data-lucide="moon" id="themeIcon"></i>
+                    <span id="themeIcon">🌙</span>
                 </button>
                 <button class="btn-icon menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Открыть меню">
-                    <i data-lucide="menu"></i>
+                    <span>☰</span>
                 </button>
             </div>
         </div>
@@ -387,27 +363,24 @@
 
     <main>
         <div class="content-area">
-            <section data-aos="fade-up">
-                <h2><i data-lucide="users"></i>О нас</h2>
+            <section>
+                <h2><span class="icon">👥</span>О нас</h2>
                 <p>Мы создаем высокотехнологичные цифровые продукты премиального уровня. Каждый пиксель нашего кода оптимизирован для обеспечения максимальной скорости, безупречной адаптивности под любые мобильные гаджеты и строгой доступности для всех пользователей без исключения.</p>
             </section>
 
-            <section data-aos="fade-up" data-aos-delay="100">
-                <h2><i data-lucide="layers"></i>Наши услуги</h2>
+            <section>
+                <h2><span class="icon">📐</span>Наши услуги</h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <i data-lucide="pen-tool"></i>
-                        <h3>UX/UI Дизайн</h3>
+                        <h3>🎨 UX/UI Дизайн</h3>
                         <p>Проектирование стильных и понятных человеку интерфейсов.</p>
                     </div>
                     <div class="service-card">
-                        <i data-lucide="code"></i>
-                        <h3>Разработка</h3>
+                        <h3>💻 Разработка</h3>
                         <p>Высокопроизводительный чистый код на современных технологиях.</p>
                     </div>
                     <div class="service-card">
-                        <i data-lucide="shield-check"></i>
-                        <h3>Поддержка</h3>
+                        <h3>🛡️ Поддержка</h3>
                         <p>Мониторинг, обеспечение безопасности и обновление систем 24/7.</p>
                     </div>
                 </div>
@@ -415,15 +388,15 @@
         </div>
 
         <aside>
-            <section data-aos="fade-left">
-                <h2><i data-lucide="mail"></i>Контакты</h2>
+            <section>
+                <h2><span class="icon">✉️</span>Контакты</h2>
                 <div>
                     <a href="#" class="contact-link">
-                        <i data-lucide="phone"></i>
+                        <span class="icon">📱</span>
                         <span>Телефон: +7 (123) 456-78-90</span>
                     </a>
                     <a href="#" class="contact-link">
-                        <i data-lucide="mail"></i>
+                        <span class="icon">📧</span>
                         <span>Email: info@example.com</span>
                     </a>
                 </div>
@@ -441,7 +414,7 @@
                         <div class="form-error" id="emailError">Введите корректный email адрес</div>
                     </div>
                     <button type="submit" class="btn-submit">
-                        <i data-lucide="send"></i> Отправить заявку
+                        <span class="icon">📨</span> Отправить заявку
                     </button>
                     <div class="form-success-msg" id="successMessage">🎉 Заявка успешно отправлена! Наш менеджер свяжется с вами.</div>
                 </form>
@@ -454,20 +427,18 @@
     </footer>
 
     <script>
-        // Инициализация библиотек
-        AOS.init({ duration: 800, once: true });
-        lucide.createIcons();
-
         // Бургер меню
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-            navMenu.classList.toggle('active');
-        });
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+                navMenu.classList.toggle('active');
+            });
+        }
 
-        // Умная смена темной темы
+        // Смена темной темы
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const body = document.body;
@@ -475,12 +446,11 @@
         function updateThemeUI(isDark) {
             if (isDark) {
                 body.classList.add('dark-theme');
-                themeIcon.setAttribute('data-lucide', 'sun');
+                themeIcon.textContent = '☀️';
             } else {
                 body.classList.remove('dark-theme');
-                themeIcon.setAttribute('data-lucide', 'moon');
+                themeIcon.textContent = '🌙';
             }
-            lucide.createIcons();
         }
 
         const savedTheme = localStorage.getItem('theme');
@@ -488,54 +458,56 @@
         let isDarkTheme = savedTheme === 'dark' || (!savedTheme && prefersDark);
         updateThemeUI(isDarkTheme);
 
-        themeToggle.addEventListener('click', () => {
-            isDarkTheme = !isDarkTheme;
-            localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
-            updateThemeUI(isDarkTheme);
-        });
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                isDarkTheme = !isDarkTheme;
+                localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+                updateThemeUI(isDarkTheme);
+            });
+        }
 
-        // Интерактивная Валидация и Симуляция отправки формы
+        // Валидация формы
         const form = document.getElementById('contactForm');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            let isValid = true;
-            const nameInput = document.getElementById('userName');
-            const emailInput = document.getElementById('userEmail');
-            const nameError = document.getElementById('nameError');
-            const emailError = document.getElementById('emailError');
-            const successMsg = document.getElementById('successMessage');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+                const nameInput = document.getElementById('userName');
+                const emailInput = document.getElementById('userEmail');
+                const nameError = document.getElementById('nameError');
+                const emailError = document.getElementById('emailError');
+                const successMsg = document.getElementById('successMessage');
 
-            // Валидация имени
-            if (nameInput.value.trim().length < 2) {
-                nameError.style.display = 'block';
-                nameInput.style.borderColor = 'var(--danger)';
-                isValid = false;
-            } else {
-                nameError.style.display = 'none';
-                nameInput.style.borderColor = 'var(--success)';
-            }
+                if (nameInput.value.trim().length < 2) {
+                    nameError.style.display = 'block';
+                    nameInput.style.borderColor = 'var(--danger)';
+                    isValid = false;
+                } else {
+                    nameError.style.display = 'none';
+                    nameInput.style.borderColor = 'var(--success)';
+                }
 
-            // Валидация email регулярным выражением
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailInput.value.trim())) {
-                emailError.style.display = 'block';
-                emailInput.style.borderColor = 'var(--danger)';
-                isValid = false;
-            } else {
-                emailError.style.display = 'none';
-                emailInput.style.borderColor = 'var(--success)';
-            }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    emailError.style.display = 'block';
+                    emailInput.style.borderColor = 'var(--danger)';
+                    isValid = false;
+                } else {
+                    emailError.style.display = 'none';
+                    emailInput.style.borderColor = 'var(--success)';
+                }
 
-            if (isValid) {
-                successMsg.style.display = 'block';
-                form.reset();
-                setTimeout(() => {
-                    nameInput.style.borderColor = 'var(--text-muted)';
-                    emailInput.style.borderColor = 'var(--text-muted)';
-                    successMsg.style.display = 'none';
-                }, 5000);
-            }
-        });
+                if (isValid) {
+                    successMsg.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                        nameInput.style.borderColor = 'var(--text-muted)';
+                        emailInput.style.borderColor = 'var(--text-muted)';
+                        successMsg.style.display = 'none';
+                    }, 5000);
+                }
+            });
+        }
     </script>
 </body>
 </html>

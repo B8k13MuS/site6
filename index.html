@@ -23,6 +23,7 @@
             --dark-header: #0f172a;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.5);
+            --modal-overlay: rgba(0, 0, 0, 0.6);
         }
 
         body.dark-theme {
@@ -33,6 +34,7 @@
             --accent: #3b82f6;
             --accent-hover: #60a5fa;
             --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            --modal-overlay: rgba(0, 0, 0, 0.8);
         }
 
         body {
@@ -55,6 +57,7 @@
             border-radius: 4px;
         }
 
+        /* Шапка */
         header {
             background-color: var(--dark-header);
             color: #fff;
@@ -101,6 +104,12 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-family: inherit;
+            padding: 0;
         }
 
         nav a:hover, nav a.active {
@@ -130,6 +139,7 @@
             display: none;
         }
 
+        /* Основной контент */
         main {
             max-width: 1200px;
             margin: 0 auto;
@@ -200,6 +210,7 @@
             color: var(--text-muted);
         }
 
+        /* Форма */
         .form-group {
             margin-bottom: 20px;
             position: relative;
@@ -293,6 +304,84 @@
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
+        /* ===== МОДАЛЬНЫЕ ОКНА ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-window {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0 8px;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--text-main);
+            transform: rotate(90deg);
+        }
+
+        .modal-window h2 {
+            margin-top: 0;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 15px;
+        }
+
+        .modal-window ul {
+            padding-left: 20px;
+        }
+
+        .modal-window ul li {
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Адаптив */
         @media (max-width: 992px) {
             main {
                 grid-template-columns: 1fr;
@@ -322,6 +411,11 @@
                 display: flex;
                 animation: slideDown 0.3s ease forwards;
             }
+
+            .modal-window {
+                padding: 25px;
+                width: 95%;
+            }
         }
 
         @keyframes slideDown {
@@ -329,7 +423,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Эмодзи вместо иконок для надежности */
         .icon {
             font-size: 1.2rem;
             line-height: 1;
@@ -346,10 +439,10 @@
             </div>
             <div class="header-controls">
                 <nav id="navMenu">
-                    <a href="#" class="active"><span class="icon">🏠</span>Главная</a>
-                    <a href="#"><span class="icon">ℹ️</span>О нас</a>
-                    <a href="#"><span class="icon">💼</span>Услуги</a>
-                    <a href="#"><span class="icon">📞</span>Контакты</a>
+                    <!-- Кнопки теперь кликабельны и открывают модальные окна -->
+                    <a href="#" data-modal="modal-about"><span class="icon">ℹ️</span>О нас</a>
+                    <a href="#" data-modal="modal-services"><span class="icon">💼</span>Услуги</a>
+                    <a href="#" data-modal="modal-contacts"><span class="icon">📞</span>Контакты</a>
                 </nav>
                 <button class="btn-icon" id="themeToggle" aria-label="Переключить тему">
                     <span id="themeIcon">🌙</span>
@@ -426,8 +519,62 @@
         <p>© 2026 PremiumWeb. Все права защищены по международным стандартам.</p>
     </footer>
 
+    <!-- ===== МОДАЛЬНЫЕ ОКНА ===== -->
+
+    <!-- О нас -->
+    <div class="modal-overlay" id="modal-about">
+        <div class="modal-window">
+            <button class="modal-close" data-close="modal-about">✕</button>
+            <h2><span class="icon">ℹ️</span> О нас</h2>
+            <p><strong>Мы — команда экспертов по автоматизации бизнес-процессов.</strong></p>
+            <p>Наша миссия — помочь компаниям оптимизировать рутинные задачи, внедрить современные цифровые инструменты и повысить эффективность работы.</p>
+            <p>Мы специализируемся на:</p>
+            <ul>
+                <li>✅ Автоматизация документооборота</li>
+                <li>✅ Внедрение CRM-систем</li>
+                <li>✅ Настройка бизнес-процессов под задачи клиента</li>
+                <li>✅ Разработка чат-ботов и голосовых помощников</li>
+                <li>✅ Интеграция с внешними сервисами и API</li>
+            </ul>
+            <p>Наша команда — это опытные аналитики, разработчики и менеджеры, которые знают, как сделать бизнес эффективнее.</p>
+            <p style="font-style: italic; color: var(--text-muted);">Свяжитесь с нами, и мы проведем бесплатный аудит ваших процессов!</p>
+        </div>
+    </div>
+
+    <!-- Услуги -->
+    <div class="modal-overlay" id="modal-services">
+        <div class="modal-window">
+            <button class="modal-close" data-close="modal-services">✕</button>
+            <h2><span class="icon">💼</span> Наши услуги</h2>
+            <p>Мы предлагаем полный спектр услуг по автоматизации и цифровизации бизнеса:</p>
+            <ul>
+                <li><strong>🔍 Бизнес-анализ</strong> — изучение текущих процессов и поиск точек роста.</li>
+                <li><strong>🤖 Роботизация процессов (RPA)</strong> — автоматизация повторяющихся задач с помощью программных роботов.</li>
+                <li><strong>📊 Внедрение BI-систем</strong> — создание дашбордов и отчетности для принятия решений.</li>
+                <li><strong>🌐 Разработка веб-приложений</strong> — создание удобных инструментов для управления бизнесом.</li>
+                <li><strong>📱 Мобильные решения</strong> — приложения для сотрудников и клиентов.</li>
+                <li><strong>🧠 Искусственный интеллект</strong> — внедрение AI-решений для прогнозирования и анализа.</li>
+                <li><strong>🔄 Интеграция систем</strong> — объединение разных сервисов в единую экосистему.</li>
+            </ul>
+            <p style="font-weight: bold; color: var(--accent);">Работаем с компаниями любого размера — от стартапов до крупных предприятий.</p>
+        </div>
+    </div>
+
+    <!-- Контакты -->
+    <div class="modal-overlay" id="modal-contacts">
+        <div class="modal-window">
+            <button class="modal-close" data-close="modal-contacts">✕</button>
+            <h2><span class="icon">📞</span> Контакты</h2>
+            <p style="font-size: 1.2rem;">🚧 <strong>Мы только начинаем</strong></p>
+            <p>Поэтому контакты разместим позднее, когда утвердим.</p>
+            <p style="color: var(--text-muted);">Следите за обновлениями на сайте!</p>
+            <hr style="border-color: var(--text-muted); opacity: 0.2;">
+            <p style="font-size: 0.9rem; color: var(--text-muted);">А пока вы можете заполнить форму на главной странице — мы обязательно свяжемся с вами.</p>
+        </div>
+    </div>
+
     <script>
-        // Бургер меню
+        // ===== БУРГЕР МЕНЮ =====
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
         if (menuToggle && navMenu) {
@@ -438,7 +585,7 @@
             });
         }
 
-        // Смена темной темы
+        // ===== ТЕМНАЯ ТЕМА =====
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const body = document.body;
@@ -466,7 +613,53 @@
             });
         }
 
-        // Валидация формы
+        // ===== МОДАЛЬНЫЕ ОКНА =====
+        // Открытие по клику на пункты меню
+        document.querySelectorAll('nav a[data-modal]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Отменяем переход по ссылке
+                const modalId = this.getAttribute('data-modal');
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Блокируем скролл
+                }
+            });
+        });
+
+        // Закрытие по крестику
+        document.querySelectorAll('.modal-close').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const modalId = this.getAttribute('data-close');
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Закрытие по клику на фон (оверлей)
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) { // Клик именно по фону, а не по окну
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Закрытие по клавише ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+        // ===== ВАЛИДАЦИЯ ФОРМЫ =====
         const form = document.getElementById('contactForm');
         if (form) {
             form.addEventListener('submit', function(e) {
@@ -478,13 +671,16 @@
                 const emailError = document.getElementById('emailError');
                 const successMsg = document.getElementById('successMessage');
 
+                // Сброс предыдущих ошибок
+                nameError.style.display = 'none';
+                emailError.style.display = 'none';
+                nameInput.style.borderColor = 'var(--text-muted)';
+                emailInput.style.borderColor = 'var(--text-muted)';
+
                 if (nameInput.value.trim().length < 2) {
                     nameError.style.display = 'block';
                     nameInput.style.borderColor = 'var(--danger)';
                     isValid = false;
-                } else {
-                    nameError.style.display = 'none';
-                    nameInput.style.borderColor = 'var(--success)';
                 }
 
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -492,9 +688,6 @@
                     emailError.style.display = 'block';
                     emailInput.style.borderColor = 'var(--danger)';
                     isValid = false;
-                } else {
-                    emailError.style.display = 'none';
-                    emailInput.style.borderColor = 'var(--success)';
                 }
 
                 if (isValid) {

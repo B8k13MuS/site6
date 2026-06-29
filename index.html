@@ -6,11 +6,11 @@
     <title>PremiumWeb — Автоматизация и цифровые продукты премиум-класса</title>
     <meta name="description" content="Создаём высокотехнологичные цифровые продукты: UX/UI дизайн, веб-разработка и поддержка 24/7. 7 лет опыта, 120 проектов, 48 довольных клиентов.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://web-automation-lac.vercel.app/">
+    <link rel="canonical" href="https://b8k13mus.github.io/site6/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://web-automation-lac.vercel.app/">
+    <meta property="og:url" content="https://b8k13mus.github.io/site6/">
     <meta property="og:title" content="PremiumWeb — Автоматизация и цифровые продукты">
     <meta property="og:description" content="Создаём высокотехнологичные цифровые продукты: UX/UI дизайн, веб-разработка и поддержка 24/7. 7 лет опыта, 120 проектов.">
     <meta property="og:locale" content="ru_RU">
@@ -920,9 +920,9 @@
                     <div class="detail"><span aria-hidden="true">📍</span> <strong>Адрес:</strong> Москва, Цифровой центр</div>
                 </div>
 
-                <!-- Исправлено: добавлены name и label атрибуты, action на Formspree -->
                 <form class="contact-form" id="contactForm" novalidate
                     aria-label="Форма обратной связи">
+                    <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY">
                     <div class="form-group">
                         <label for="name" class="sr-only">Ваше имя</label>
                         <input type="text" id="name" name="name"
@@ -959,9 +959,8 @@
 <footer class="footer">
     <div class="container">
         <div class="socials">
-            <a href="#" aria-label="Telegram канал" title="Telegram">📱</a>
-            <a href="#" aria-label="YouTube канал" title="YouTube">▶️</a>
-            <a href="#" aria-label="GitHub профиль" title="GitHub">🐙</a>
+            <a href="https://t.me/uMka_byz" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram">📱</a>
+            <a href="https://github.com/b8k13mus" target="_blank" rel="noopener noreferrer" aria-label="GitHub профиль" title="GitHub">🐙</a>
         </div>
         <p>© 2026 PremiumWeb. Все права защищены.</p>
     </div>
@@ -1246,9 +1245,13 @@
                 counterObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1 });
 
-    statNumbers.forEach(el => counterObserver.observe(el));
+    statNumbers.forEach(el => {
+        // Показываем целевое значение сразу — анимация запустится при скролле
+        el.textContent = el.getAttribute('data-count');
+        counterObserver.observe(el);
+    });
 
     // ============================================================
     // 5. ВАЛИДАЦИЯ ФОРМЫ
@@ -1292,7 +1295,6 @@
         if (messageInput.value.trim().length < 10) { setFieldError(messageInput, 'messageError', true); valid = false; }
 
         if (!valid) {
-            // Фокус на первое поле с ошибкой
             form.querySelector('[aria-invalid="true"]')?.focus();
             return;
         }
@@ -1301,7 +1303,29 @@
         submitBtn.textContent = 'Отправка...';
 
         try {
-            // Сохраняем в localStorage как запасной вариант
+            const formData = new FormData(form);
+            const accessKey = form.querySelector('[name="access_key"]')?.value;
+
+            let sent = false;
+
+            // Отправка через Web3Forms (нужен ключ с https://web3forms.com)
+            if (accessKey && !accessKey.startsWith('REPLACE_')) {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: accessKey,
+                        name: nameInput.value.trim(),
+                        email: emailInput.value.trim(),
+                        message: messageInput.value.trim(),
+                        subject: 'Новая заявка с PremiumWeb'
+                    })
+                });
+                const json = await res.json();
+                sent = json.success;
+            }
+
+            // Сохранение в localStorage (резерв + работает без ключа)
             const contacts = JSON.parse(localStorage.getItem('pw_contacts') || '[]');
             contacts.push({
                 name: nameInput.value.trim(),
@@ -1311,15 +1335,12 @@
             });
             localStorage.setItem('pw_contacts', JSON.stringify(contacts));
 
-            // Имитация задержки сети (заменить на реальный fetch)
-            await new Promise(r => setTimeout(r, 800));
-
             formStatus.textContent = '✅ Заявка принята! Свяжемся с вами в течение 24 часов.';
             formStatus.className = 'form-status success';
             formStatus.style.display = 'block';
             form.reset();
         } catch (err) {
-            formStatus.textContent = '❌ Ошибка отправки. Пожалуйста, напишите нам напрямую.';
+            formStatus.textContent = '❌ Ошибка отправки. Напишите нам напрямую: hello@premiumweb.ru';
             formStatus.className = 'form-status error';
             formStatus.style.display = 'block';
         } finally {

@@ -1289,7 +1289,7 @@
         formStatus.style.display = 'none';
     }
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
         clearErrors();
 
@@ -1306,50 +1306,8 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Отправка...';
 
-        try {
-            const formData = new FormData(form);
-            const accessKey = form.querySelector('[name="access_key"]')?.value;
-
-            let sent = false;
-
-            // Отправка через Web3Forms (нужен ключ с https://web3forms.com)
-            if (accessKey && !accessKey.startsWith('REPLACE_')) {
-                const data = new FormData();
-                data.append('access_key', accessKey);
-                data.append('name', nameInput.value.trim());
-                data.append('email', emailInput.value.trim());
-                data.append('message', messageInput.value.trim());
-                data.append('subject', 'Новая заявка с PremiumWeb');
-                const res = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: data
-                });
-                const json = await res.json();
-                sent = json.success;
-            }
-
-            // Сохранение в localStorage (резерв + работает без ключа)
-            const contacts = JSON.parse(localStorage.getItem('pw_contacts') || '[]');
-            contacts.push({
-                name: nameInput.value.trim(),
-                email: emailInput.value.trim(),
-                message: messageInput.value.trim(),
-                ts: new Date().toISOString()
-            });
-            localStorage.setItem('pw_contacts', JSON.stringify(contacts));
-
-            formStatus.textContent = '✅ Заявка принята! Свяжемся с вами в течение 24 часов.';
-            formStatus.className = 'form-status success';
-            formStatus.style.display = 'block';
-            form.reset();
-        } catch (err) {
-            formStatus.textContent = '❌ Ошибка отправки. Напишите нам напрямую: hello@premiumweb.ru';
-            formStatus.className = 'form-status error';
-            formStatus.style.display = 'block';
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Отправить заявку';
-        }
+        // Нативная отправка — браузер сам POST на web3forms
+        form.submit();
     });
 
     // Убираем ошибки при вводе

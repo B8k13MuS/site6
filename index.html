@@ -922,7 +922,7 @@
 
                 <form class="contact-form" id="contactForm" novalidate
                     aria-label="Форма обратной связи">
-                    <input type="hidden" name="access_key" value="909279d3-c46c-4fda-be2e-f24230918a0b">
+                    <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY">
                     <div class="form-group">
                         <label for="name" class="sr-only">Ваше имя</label>
                         <input type="text" id="name" name="name"
@@ -1310,16 +1310,15 @@
 
             // Отправка через Web3Forms (нужен ключ с https://web3forms.com)
             if (accessKey && !accessKey.startsWith('REPLACE_')) {
+                const data = new FormData();
+                data.append('access_key', accessKey);
+                data.append('name', nameInput.value.trim());
+                data.append('email', emailInput.value.trim());
+                data.append('message', messageInput.value.trim());
+                data.append('subject', 'Новая заявка с PremiumWeb');
                 const res = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({
-                        access_key: accessKey,
-                        name: nameInput.value.trim(),
-                        email: emailInput.value.trim(),
-                        message: messageInput.value.trim(),
-                        subject: 'Новая заявка с PremiumWeb'
-                    })
+                    body: data
                 });
                 const json = await res.json();
                 sent = json.success;

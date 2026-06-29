@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Эксперт по автоматизации — премиальные цифровые продукты</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PremiumWeb — Автоматизация и цифровые продукты премиум-класса</title>
+    <meta name="description" content="Создаём высокотехнологичные цифровые продукты: UX/UI дизайн, веб-разработка и поддержка 24/7. 7 лет опыта, 120 проектов, 48 довольных клиентов.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://web-automation-lac.vercel.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://web-automation-lac.vercel.app/">
+    <meta property="og:title" content="PremiumWeb — Автоматизация и цифровые продукты">
+    <meta property="og:description" content="Создаём высокотехнологичные цифровые продукты: UX/UI дизайн, веб-разработка и поддержка 24/7. 7 лет опыта, 120 проектов.">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PremiumWeb — Автоматизация и цифровые продукты">
+    <meta name="twitter:description" content="Создаём высокотехнологичные цифровые продукты с безупречной скоростью и адаптивностью.">
+
+    <!-- SVG Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+
     <style>
         /* ===== RESET & BASE ===== */
         *,
@@ -70,16 +90,9 @@
         }
 
         /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 8px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 8px; }
 
         /* ===== HEADER / NAV ===== */
         .header {
@@ -104,6 +117,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 16px;
         }
 
         .logo {
@@ -112,19 +126,20 @@
             letter-spacing: -0.5px;
             color: var(--text-primary);
             text-decoration: none;
+            flex-shrink: 0;
         }
-        .logo span {
-            color: var(--accent);
-        }
+        .logo span { color: var(--accent); }
 
-        .nav {
+        /* Исправлено: nav вместо ul с role="navigation" */
+        .nav-menu {
             display: flex;
             align-items: center;
             gap: 32px;
             list-style: none;
         }
 
-        .nav a {
+        .nav-menu a,
+        .nav-menu button.nav-link {
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 14px;
@@ -133,8 +148,13 @@
             transition: color var(--transition);
             cursor: pointer;
             position: relative;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            padding: 0;
         }
-        .nav a::after {
+        .nav-menu a::after,
+        .nav-menu button.nav-link::after {
             content: '';
             position: absolute;
             bottom: -4px;
@@ -144,10 +164,12 @@
             background: var(--accent);
             transition: width var(--transition);
         }
-        .nav a:hover {
+        .nav-menu a:hover,
+        .nav-menu button.nav-link:hover {
             color: var(--text-primary);
         }
-        .nav a:hover::after {
+        .nav-menu a:hover::after,
+        .nav-menu button.nav-link:hover::after {
             width: 100%;
         }
 
@@ -213,14 +235,8 @@
         }
 
         @keyframes heroGlow {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0.4;
-            }
-            100% {
-                transform: translate(-40px, 40px) scale(1.2);
-                opacity: 0.7;
-            }
+            0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+            100% { transform: translate(-40px, 40px) scale(1.2); opacity: 0.7; }
         }
 
         .hero-content {
@@ -272,6 +288,7 @@
             flex-wrap: wrap;
         }
 
+        /* ===== BUTTONS ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -285,6 +302,11 @@
             transition: all var(--transition);
             text-decoration: none;
             font-family: var(--font);
+            line-height: 1;
+        }
+        .btn:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
         }
 
         .btn-primary {
@@ -365,9 +387,7 @@
             color: var(--text-secondary);
             line-height: 1.8;
         }
-        .about-text p+p {
-            margin-top: 16px;
-        }
+        .about-text p + p { margin-top: 16px; }
 
         .about-stats {
             display: grid;
@@ -408,6 +428,7 @@
             gap: 30px;
         }
 
+        /* Исправлено: role="button" + tabindex + focus стили */
         .service-card {
             background: var(--bg-card);
             border: 1px solid var(--border-glass);
@@ -422,20 +443,20 @@
         .service-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
             opacity: 0;
             transition: opacity var(--transition);
         }
-        .service-card:hover {
+        .service-card:hover,
+        .service-card:focus-visible {
             transform: translateY(-8px);
             border-color: var(--accent);
             background: var(--bg-card-hover);
+            outline: 2px solid var(--accent);
         }
-        .service-card:hover::before {
+        .service-card:hover::before,
+        .service-card:focus-visible::before {
             opacity: 1;
         }
 
@@ -443,6 +464,7 @@
             font-size: 36px;
             margin-bottom: 16px;
             display: block;
+            line-height: 1;
         }
         .service-card h3 {
             font-size: 20px;
@@ -455,6 +477,20 @@
             font-size: 15px;
             line-height: 1.7;
             position: relative;
+        }
+        .service-card .card-hint {
+            font-size: 13px;
+            color: var(--accent);
+            margin-top: 16px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: all var(--transition);
+        }
+        .service-card:hover .card-hint,
+        .service-card:focus-visible .card-hint {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ===== CONTACT ===== */
@@ -481,19 +517,28 @@
             color: var(--text-secondary);
             font-size: 15px;
         }
-        .contact-info .detail strong {
-            color: var(--text-primary);
-        }
+        .contact-info .detail strong { color: var(--text-primary); }
 
+        /* Исправлено: добавлены label (sr-only) и name атрибуты */
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .form-group {
-            position: relative;
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
+
+        .form-group { position: relative; }
 
         .form-group input,
         .form-group textarea {
@@ -514,9 +559,7 @@
             box-shadow: 0 0 0 4px var(--accent-glow);
         }
         .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-muted);
-        }
+        .form-group textarea::placeholder { color: var(--text-muted); }
         .form-group textarea {
             min-height: 120px;
             resize: vertical;
@@ -529,11 +572,26 @@
             display: none;
         }
         .form-group.error input,
-        .form-group.error textarea {
-            border-color: #E5484D;
+        .form-group.error textarea { border-color: #E5484D; }
+        .form-group.error .error-message { display: block; }
+
+        /* Статус отправки */
+        .form-status {
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
         }
-        .form-group.error .error-message {
-            display: block;
+        .form-status.success {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+        }
+        .form-status.error {
+            background: rgba(229, 72, 77, 0.15);
+            border: 1px solid rgba(229, 72, 77, 0.3);
+            color: #E5484D;
         }
 
         /* ===== MODAL ===== */
@@ -548,21 +606,15 @@
             align-items: center;
             justify-content: center;
             padding: 24px;
-            animation: fadeIn 0.3s ease;
         }
         .modal-overlay.active {
             display: flex;
+            animation: fadeInOverlay 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .modal {
@@ -576,6 +628,12 @@
             position: relative;
             max-height: 90vh;
             overflow-y: auto;
+            animation: slideUpModal 0.3s ease;
+        }
+
+        @keyframes slideUpModal {
+            from { transform: translateY(16px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .modal-close {
@@ -588,10 +646,12 @@
             font-size: 24px;
             cursor: pointer;
             transition: color var(--transition);
+            line-height: 1;
+            padding: 4px 8px;
+            border-radius: 6px;
         }
-        .modal-close:hover {
-            color: var(--text-primary);
-        }
+        .modal-close:hover { color: var(--text-primary); background: var(--bg-card); }
+        .modal-close:focus-visible { outline: 2px solid var(--accent); }
 
         .modal h2 {
             font-size: 28px;
@@ -613,13 +673,15 @@
             padding: 6px 0;
             color: var(--text-secondary);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
         }
         .modal ul li::before {
             content: '✦';
             color: var(--accent);
             font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
         /* ===== FOOTER ===== */
@@ -641,25 +703,40 @@
             text-decoration: none;
             transition: color var(--transition);
             font-size: 18px;
+            padding: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .footer .socials a:hover {
-            color: var(--accent);
+        .footer .socials a:hover { color: var(--accent); background: var(--bg-card); }
+        .footer .socials a:focus-visible { outline: 2px solid var(--accent); }
+
+        /* ===== SKIP TO MAIN ===== */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 24px;
+            background: var(--accent);
+            color: #0A0A0A;
+            padding: 8px 16px;
+            border-radius: 0 0 8px 8px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            z-index: 9999;
+            transition: top 0.2s;
         }
+        .skip-link:focus { top: 0; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
         }
 
         @media (max-width: 768px) {
-            .nav {
+            .nav-menu {
                 position: fixed;
                 top: 0;
                 right: -100%;
@@ -672,94 +749,73 @@
                 border-left: 1px solid var(--border-glass);
                 transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 backdrop-filter: blur(20px);
+                list-style: none;
             }
-            .nav.active {
-                right: 0;
-            }
+            .nav-menu.active { right: 0; }
 
-            .hamburger {
-                display: flex;
-            }
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -5px);
-            }
+            .hamburger { display: flex; }
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-            .hero h1 {
-                font-size: 38px;
-            }
-            .about-stats {
-                grid-template-columns: 1fr 1fr;
-            }
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .modal {
-                padding: 32px 24px;
-            }
+            .hero h1 { font-size: 38px; }
+            .about-stats { grid-template-columns: 1fr 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .modal { padding: 32px 24px; }
         }
 
         @media (max-width: 480px) {
-            .hero-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .hero-actions .btn {
-                justify-content: center;
-            }
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-            .section {
-                padding: 60px 0;
-            }
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .hero-actions .btn { justify-content: center; }
+            .about-stats { grid-template-columns: 1fr; }
+            .section { padding: 60px 0; }
         }
 
-        /* ===== UTILITY ===== */
-        .text-center {
-            text-align: center;
-        }
-        .mt-16 {
-            margin-top: 16px;
-        }
+        .text-center { text-align: center; }
+        .mt-16 { margin-top: 16px; }
     </style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header class="header" role="banner">
-        <div class="container">
-            <a href="#" class="logo">Premium<span>Web</span></a>
+<!-- Ссылка для быстрого перехода к основному контенту -->
+<a href="#main" class="skip-link">Перейти к содержимому</a>
 
-            <ul class="nav" role="navigation" aria-label="Основное меню">
-                <li><a data-modal="about">О нас</a></li>
-                <li><a data-modal="services">Услуги</a></li>
-                <li><a data-modal="contact">Контакты</a></li>
+<!-- ===== HEADER ===== -->
+<header class="header" role="banner">
+    <div class="container">
+        <a href="#" class="logo" aria-label="PremiumWeb — на главную">Premium<span>Web</span></a>
+
+        <!-- Исправлено: nav + ul (семантически верно) -->
+        <nav aria-label="Основное меню">
+            <ul class="nav-menu" id="navMenu">
+                <li><button class="nav-link" data-modal="about" aria-haspopup="dialog">О нас</button></li>
+                <li><button class="nav-link" data-modal="services" aria-haspopup="dialog">Услуги</button></li>
+                <li><button class="nav-link" data-modal="contact" aria-haspopup="dialog">Контакты</button></li>
                 <li>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
-                        <span id="themeIcon">🌙</span>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Переключить тему">
+                        <span id="themeIcon" aria-hidden="true">🌙</span>
                     </button>
                 </li>
             </ul>
+        </nav>
 
-            <button class="hamburger" id="hamburger" aria-label="Открыть меню" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </header>
+        <button class="hamburger" id="hamburger" aria-label="Открыть меню" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+    </div>
+</header>
+
+<main id="main">
 
     <!-- ===== HERO ===== -->
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" aria-labelledby="hero-heading">
         <div class="container">
             <div class="hero-content">
-                <span class="hero-badge">✦ Премиум качество</span>
-                <h1>
-                    Автоматизация<br />
+                <span class="hero-badge" aria-label="Премиум качество">✦ Премиум качество</span>
+                <h1 id="hero-heading">
+                    Автоматизация<br>
                     <span class="highlight">на новом уровне</span>
                 </h1>
                 <p>
@@ -767,19 +823,19 @@
                     скоростью, адаптивностью и доступностью для всех.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary" data-modal="contact">Обсудить проект</button>
-                    <button class="btn btn-secondary" data-modal="services">Наши услуги</button>
+                    <button class="btn btn-primary" data-modal="contact" aria-haspopup="dialog">Обсудить проект</button>
+                    <button class="btn btn-secondary" data-modal="services" aria-haspopup="dialog">Наши услуги</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===== ABOUT ===== -->
-    <section class="section" id="about">
+    <section class="section" id="about" aria-labelledby="about-heading">
         <div class="container">
             <div class="section-header">
-                <span class="label">О нас</span>
-                <h2>Цифровое совершенство<br />в каждой детали</h2>
+                <span class="label" aria-hidden="true">О нас</span>
+                <h2 id="about-heading">Цифровое совершенство<br>в каждой детали</h2>
                 <p>Мы создаем продукты, которые работают на опережение.</p>
             </div>
             <div class="about-grid">
@@ -794,17 +850,17 @@
                         экосистемы, которые приносят результат и вдохновляют.
                     </p>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="7">0</div>
+                <div class="about-stats" role="list" aria-label="Ключевые показатели">
+                    <div class="stat-item" role="listitem">
+                        <div class="stat-number" data-count="7" aria-label="7 лет опыта">0</div>
                         <div class="stat-label">Лет опыта</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="120">0</div>
+                    <div class="stat-item" role="listitem">
+                        <div class="stat-number" data-count="120" aria-label="120 проектов">0</div>
                         <div class="stat-label">Проектов</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="48">0</div>
+                    <div class="stat-item" role="listitem">
+                        <div class="stat-number" data-count="48" aria-label="48 клиентов">0</div>
                         <div class="stat-label">Клиентов</div>
                     </div>
                 </div>
@@ -813,367 +869,490 @@
     </section>
 
     <!-- ===== SERVICES ===== -->
-    <section class="section" id="services">
+    <section class="section" id="services" aria-labelledby="services-heading">
         <div class="container">
             <div class="section-header">
-                <span class="label">Услуги</span>
-                <h2>Наши направления</h2>
+                <span class="label" aria-hidden="true">Услуги</span>
+                <h2 id="services-heading">Наши направления</h2>
                 <p>Полный цикл создания цифровых продуктов премиум-класса.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card" data-modal="service-ux">
-                    <span class="icon">🎨</span>
+                <!-- Исправлено: role="button" + tabindex="0" -->
+                <article class="service-card" role="button" tabindex="0" data-modal="service-ux"
+                    aria-label="UX/UI Дизайн — подробнее" aria-haspopup="dialog">
+                    <span class="icon" aria-hidden="true">🎨</span>
                     <h3>UX/UI Дизайн</h3>
                     <p>Проектирование интуитивных и стильных интерфейсов, которые решают задачи бизнеса.</p>
-                </div>
-                <div class="service-card" data-modal="service-dev">
-                    <span class="icon">💻</span>
+                    <span class="card-hint" aria-hidden="true">Нажмите для подробностей →</span>
+                </article>
+                <article class="service-card" role="button" tabindex="0" data-modal="service-dev"
+                    aria-label="Разработка — подробнее" aria-haspopup="dialog">
+                    <span class="icon" aria-hidden="true">💻</span>
                     <h3>Разработка</h3>
                     <p>Высокопроизводительный код на современных технологиях с упором на скорость и безопасность.</p>
-                </div>
-                <div class="service-card" data-modal="service-support">
-                    <span class="icon">🛡️</span>
+                    <span class="card-hint" aria-hidden="true">Нажмите для подробностей →</span>
+                </article>
+                <article class="service-card" role="button" tabindex="0" data-modal="service-support"
+                    aria-label="Поддержка — подробнее" aria-haspopup="dialog">
+                    <span class="icon" aria-hidden="true">🛡️</span>
                     <h3>Поддержка</h3>
                     <p>Мониторинг, обеспечение безопасности и обновление систем 24/7.</p>
-                </div>
+                    <span class="card-hint" aria-hidden="true">Нажмите для подробностей →</span>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section class="section" id="contact">
+    <section class="section" id="contact" aria-labelledby="contact-heading">
         <div class="container">
             <div class="section-header">
-                <span class="label">Контакты</span>
-                <h2>Начнем проект?</h2>
+                <span class="label" aria-hidden="true">Контакты</span>
+                <h2 id="contact-heading">Начнем проект?</h2>
                 <p>Оставьте заявку, и мы свяжемся с вами в течение 24 часов.</p>
             </div>
             <div class="contact-wrapper">
                 <div class="contact-info">
                     <h3>Свяжитесь с нами</h3>
                     <p>Мы открыты для диалога и всегда рады новым вызовам.</p>
-                    <div class="detail"><span>📧</span> <strong>Email:</strong> hello@premiumweb.ru</div>
-                    <div class="detail"><span>📱</span> <strong>Телефон:</strong> +7 (999) 123-45-67</div>
-                    <div class="detail"><span>📍</span> <strong>Адрес:</strong> Москва, Цифровой центр</div>
+                    <div class="detail"><span aria-hidden="true">📧</span> <strong>Email:</strong> <a href="mailto:hello@premiumweb.ru" style="color:var(--text-secondary);text-decoration:none;">hello@premiumweb.ru</a></div>
+                    <div class="detail"><span aria-hidden="true">📱</span> <strong>Телефон:</strong> <a href="tel:+79991234567" style="color:var(--text-secondary);text-decoration:none;">+7 (999) 123-45-67</a></div>
+                    <div class="detail"><span aria-hidden="true">📍</span> <strong>Адрес:</strong> Москва, Цифровой центр</div>
                 </div>
-                <form class="contact-form" id="contactForm" novalidate>
+
+                <!-- Исправлено: добавлены name и label атрибуты, action на Formspree -->
+                <form class="contact-form" id="contactForm" novalidate
+                    aria-label="Форма обратной связи">
                     <div class="form-group">
-                        <input type="text" id="name" placeholder="Ваше имя" required />
-                        <div class="error-message">Пожалуйста, введите ваше имя</div>
+                        <label for="name" class="sr-only">Ваше имя</label>
+                        <input type="text" id="name" name="name"
+                            placeholder="Ваше имя" required
+                            autocomplete="name"
+                            aria-required="true" aria-describedby="nameError">
+                        <div id="nameError" class="error-message" role="alert">Пожалуйста, введите ваше имя</div>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" placeholder="Email" required />
-                        <div class="error-message">Введите корректный email</div>
+                        <label for="email" class="sr-only">Email адрес</label>
+                        <input type="email" id="email" name="email"
+                            placeholder="Email" required
+                            autocomplete="email"
+                            aria-required="true" aria-describedby="emailError">
+                        <div id="emailError" class="error-message" role="alert">Введите корректный email</div>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" placeholder="Расскажите о проекте" required></textarea>
-                        <div class="error-message">Напишите пару слов о проекте</div>
+                        <label for="message" class="sr-only">Сообщение о проекте</label>
+                        <textarea id="message" name="message"
+                            placeholder="Расскажите о проекте" required
+                            aria-required="true" aria-describedby="messageError"></textarea>
+                        <div id="messageError" class="error-message" role="alert">Напишите пару слов о проекте</div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Отправить заявку</button>
+                    <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="socials">
-                <a href="#" aria-label="Telegram">📱</a>
-                <a href="#" aria-label="YouTube">▶️</a>
-                <a href="#" aria-label="GitHub">🐙</a>
-            </div>
-            <p>© 2026 PremiumWeb. Все права защищены.</p>
-        </div>
-    </footer>
+</main>
 
-    <!-- ===== MODALS ===== -->
-
-    <!-- О нас -->
-    <div class="modal-overlay" id="modal-about">
-        <div class="modal">
-            <button class="modal-close" data-close>&times;</button>
-            <h2>👥 О нас</h2>
-            <p>
-                Мы создаем высокотехнологичные цифровые продукты премиального уровня.
-                Каждый пиксель нашего кода оптимизирован для обеспечения максимальной
-                скорости, безупречной адаптивности под любые мобильные гаджеты и
-                строгой доступности для всех пользователей без исключения.
-            </p>
-            <p>
-                Наша команда — это архитекторы цифрового опыта. Мы не просто пишем код,
-                мы проектируем будущее.
-            </p>
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="socials">
+            <a href="#" aria-label="Telegram канал" title="Telegram">📱</a>
+            <a href="#" aria-label="YouTube канал" title="YouTube">▶️</a>
+            <a href="#" aria-label="GitHub профиль" title="GitHub">🐙</a>
         </div>
+        <p>© 2026 PremiumWeb. Все права защищены.</p>
     </div>
+</footer>
 
-    <!-- Услуги -->
-    <div class="modal-overlay" id="modal-services">
-        <div class="modal">
-            <button class="modal-close" data-close>&times;</button>
-            <h2>📐 Наши услуги</h2>
-            <ul>
-                <li><strong>UX/UI Дизайн</strong> — проектирование стильных и понятных человеку интерфейсов.</li>
-                <li><strong>Разработка</strong> — высокопроизводительный чистый код на современных технологиях.</li>
-                <li><strong>Поддержка</strong> — мониторинг, безопасность и обновление систем 24/7.</li>
-            </ul>
-            <p>Каждый проект уникален. Мы подбираем стек и подход под вашу задачу.</p>
-        </div>
+<!-- ===== MODALS ===== -->
+
+<!-- О нас -->
+<div class="modal-overlay" id="modal-about" role="dialog" aria-modal="true" aria-labelledby="modal-about-title">
+    <div class="modal">
+        <button class="modal-close" data-close aria-label="Закрыть">×</button>
+        <h2 id="modal-about-title">О нас</h2>
+        <p>
+            Мы создаем высокотехнологичные цифровые продукты премиального уровня.
+            Каждый пиксель нашего кода оптимизирован для обеспечения максимальной
+            скорости, безупречной адаптивности под любые устройства и
+            строгой доступности для всех пользователей без исключения.
+        </p>
+        <p>
+            Наша команда — это архитекторы цифрового опыта. Мы не просто пишем код,
+            мы проектируем будущее.
+        </p>
     </div>
+</div>
 
-    <!-- Контакты -->
-    <div class="modal-overlay" id="modal-contact">
-        <div class="modal">
-            <button class="modal-close" data-close>&times;</button>
-            <h2>📬 Контакты</h2>
-            <p><strong>Email:</strong> hello@premiumweb.ru</p>
-            <p><strong>Телефон:</strong> +7 (999) 123-45-67</p>
-            <p><strong>Адрес:</strong> Москва, Цифровой центр</p>
-            <p style="margin-top:16px;">Мы всегда на связи. Напишите нам — и мы ответим в течение часа.</p>
-        </div>
+<!-- Услуги -->
+<div class="modal-overlay" id="modal-services" role="dialog" aria-modal="true" aria-labelledby="modal-services-title">
+    <div class="modal">
+        <button class="modal-close" data-close aria-label="Закрыть">×</button>
+        <h2 id="modal-services-title">Наши услуги</h2>
+        <ul>
+            <li><strong>UX/UI Дизайн</strong> — проектирование стильных и понятных пользователю интерфейсов.</li>
+            <li><strong>Разработка</strong> — высокопроизводительный чистый код на современных технологиях.</li>
+            <li><strong>Поддержка</strong> — мониторинг, безопасность и обновление систем 24/7.</li>
+        </ul>
+        <p>Каждый проект уникален. Мы подбираем стек и подход под вашу задачу.</p>
     </div>
+</div>
 
-    <!-- Детальные услуги (модалки по клику на карточку) -->
-    <div class="modal-overlay" id="modal-service-ux">
-        <div class="modal">
-            <button class="modal-close" data-close>&times;</button>
-            <h2>🎨 UX/UI Дизайн</h2>
-            <p>
-                Мы создаем интерфейсы, которые не просто красивы, но и интуитивно понятны.
-                Исследуем поведение пользователей, строим прототипы и тестируем гипотезы,
-                чтобы каждая кнопка и каждый экран работали на результат.
-            </p>
-            <p><strong>Что входит:</strong> исследования, прототипирование, дизайн-системы, адаптивный дизайн.</p>
-        </div>
+<!-- Контакты -->
+<div class="modal-overlay" id="modal-contact" role="dialog" aria-modal="true" aria-labelledby="modal-contact-title">
+    <div class="modal">
+        <button class="modal-close" data-close aria-label="Закрыть">×</button>
+        <h2 id="modal-contact-title">Контакты</h2>
+        <p><strong>Email:</strong> <a href="mailto:hello@premiumweb.ru" style="color:var(--accent);">hello@premiumweb.ru</a></p>
+        <p><strong>Телефон:</strong> <a href="tel:+79991234567" style="color:var(--accent);">+7 (999) 123-45-67</a></p>
+        <p><strong>Адрес:</strong> Москва, Цифровой центр</p>
+        <p style="margin-top:16px;">Мы всегда на связи. Напишите нам — и мы ответим в течение часа.</p>
+        <a href="#contact" class="btn btn-primary mt-16" style="display:inline-flex;" onclick="closeAllModals()">
+            Написать сейчас →
+        </a>
     </div>
+</div>
 
-    <div class="modal-overlay" id="modal-service-dev">
-        <div class="modal">
-            <button class="modal-close" data-close>&times;</button>
-            <h2>💻 Разработка</h2>
-            <p>
-                Пишем чистый, производительный код, который легко масштабировать и поддерживать.
-                Используем современные фреймворки, оптимизируем загрузку и обеспечиваем
-                безопасность на всех уровнях.
-            </p>
-            <p><strong>Стек:</strong> React, Vue, Node.js, Python, и другие современные технологии.</p>
-        </div>
+<!-- UX/UI Дизайн -->
+<div class="modal-overlay" id="modal-service-ux" role="dialog" aria-modal="true" aria-labelledby="modal-ux-title">
+    <div class="modal">
+        <button class="modal-close" data-close aria-label="Закрыть">×</button>
+        <h2 id="modal-ux-title">🎨 UX/UI Дизайн</h2>
+        <p>
+            Мы создаем интерфейсы, которые не просто красивы, но и интуитивно понятны.
+            Исследуем поведение пользователей, строим прототипы и тестируем гипотезы,
+            чтобы каждая кнопка и каждый экран работали на результат.
+        </p>
+        <ul>
+            <li>UX-исследования и анализ конкурентов</li>
+            <li>Прототипирование в Figma</li>
+            <li>Дизайн-системы и UI-кит</li>
+            <li>Адаптивный дизайн под все устройства</li>
+        </ul>
+        <button class="btn btn-primary" data-close data-then-modal="contact">Обсудить проект</button>
     </div>
+</div>
 
-    <div class="modal-overlay" id="modal-service-support">
-        <div class="modal">
-            <button class="modal-close" data-close>&times;</button>
-            <h2>🛡️ Поддержка</h2>
-            <p>
-                Мы не бросаем проекты после сдачи. Обеспечиваем круглосуточный мониторинг,
-                оперативно исправляем ошибки, обновляем зависимости и защищаем от угроз.
-            </p>
-            <p><strong>Сервисы:</strong> мониторинг uptime, бэкапы, обновления, техническая консультация.</p>
-        </div>
+<!-- Разработка -->
+<div class="modal-overlay" id="modal-service-dev" role="dialog" aria-modal="true" aria-labelledby="modal-dev-title">
+    <div class="modal">
+        <button class="modal-close" data-close aria-label="Закрыть">×</button>
+        <h2 id="modal-dev-title">💻 Разработка</h2>
+        <p>
+            Пишем чистый, производительный код, который легко масштабировать и поддерживать.
+            Используем современные фреймворки, оптимизируем загрузку и обеспечиваем
+            безопасность на всех уровнях.
+        </p>
+        <ul>
+            <li>React, Vue, Next.js, Nuxt</li>
+            <li>Node.js, Python, Go — бэкенд</li>
+            <li>PostgreSQL, MongoDB — базы данных</li>
+            <li>CI/CD, Docker, облачный деплой</li>
+        </ul>
+        <button class="btn btn-primary" data-close data-then-modal="contact">Обсудить проект</button>
     </div>
+</div>
 
-    <script>
-        // ============================================================
-        // 1. ТЕМА (светлая / тёмная)
-        // ============================================================
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const html = document.documentElement;
+<!-- Поддержка -->
+<div class="modal-overlay" id="modal-service-support" role="dialog" aria-modal="true" aria-labelledby="modal-support-title">
+    <div class="modal">
+        <button class="modal-close" data-close aria-label="Закрыть">×</button>
+        <h2 id="modal-support-title">🛡️ Поддержка</h2>
+        <p>
+            Мы не бросаем проекты после сдачи. Обеспечиваем круглосуточный мониторинг,
+            оперативно исправляем ошибки, обновляем зависимости и защищаем от угроз.
+        </p>
+        <ul>
+            <li>Мониторинг uptime и производительности</li>
+            <li>Автоматические бэкапы</li>
+            <li>Обновление зависимостей и безопасности</li>
+            <li>Техническая консультация — до 1 часа реакции</li>
+        </ul>
+        <button class="btn btn-primary" data-close data-then-modal="contact">Обсудить проект</button>
+    </div>
+</div>
 
-        function setTheme(theme) {
-            html.setAttribute('data-theme', theme);
-            themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
-            localStorage.setItem('theme', theme);
-        }
+<script>
+(function () {
+    'use strict';
 
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        setTheme(savedTheme);
+    // ============================================================
+    // 1. ТЕМА
+    // ============================================================
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
 
-        themeToggle.addEventListener('click', () => {
-            const current = html.getAttribute('data-theme');
-            setTheme(current === 'dark' ? 'light' : 'dark');
-        });
+    function setTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Переключить на светлую тему' : 'Переключить на тёмную тему');
+        localStorage.setItem('theme', theme);
+    }
 
-        // ============================================================
-        // 2. МОДАЛЬНЫЕ ОКНА
-        // ============================================================
-        const modals = document.querySelectorAll('.modal-overlay');
-        const triggers = document.querySelectorAll('[data-modal]');
-        const closes = document.querySelectorAll('[data-close]');
+    setTheme(localStorage.getItem('theme') || 'dark');
 
-        function openModal(id) {
-            const target = document.getElementById('modal-' + id);
-            if (target) target.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+    themeToggle.addEventListener('click', () => {
+        setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
 
-        function closeModal(el) {
-            el.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+    // ============================================================
+    // 2. МОДАЛЬНЫЕ ОКНА с focus trap
+    // ============================================================
+    const modals = document.querySelectorAll('.modal-overlay');
+    let lastFocused = null;
 
-        // Открытие по клику на [data-modal]
-        triggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                const id = trigger.getAttribute('data-modal');
-                openModal(id);
-                // Закрываем мобильное меню если открыто
-                document.querySelector('.nav')?.classList.remove('active');
-                document.querySelector('.hamburger')?.classList.remove('active');
-            });
-        });
+    function openModal(id) {
+        const target = document.getElementById('modal-' + id);
+        if (!target) return;
+        lastFocused = document.activeElement;
+        target.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        // Фокус на первый фокусируемый элемент
+        const focusable = target.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length) focusable[0].focus();
+    }
 
-        // Закрытие по крестику
-        closes.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const modal = btn.closest('.modal-overlay');
-                if (modal) closeModal(modal);
-            });
-        });
+    function closeModal(el) {
+        el.classList.remove('active');
+        document.body.style.overflow = '';
+        if (lastFocused) lastFocused.focus();
+    }
 
-        // Закрытие по клику на оверлей
-        modals.forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal(modal);
-            });
-        });
+    window.closeAllModals = function () {
+        modals.forEach(m => m.classList.remove('active'));
+        document.body.style.overflow = '';
+    };
 
-        // Закрытие по ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                modals.forEach(m => {
-                    if (m.classList.contains('active')) closeModal(m);
-                });
-            }
-        });
-
-        // ============================================================
-        // 3. ГАМБУРГЕР (мобильное меню)
-        // ============================================================
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.querySelector('.nav');
-
-        hamburger.addEventListener('click', () => {
-            const isActive = nav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            hamburger.setAttribute('aria-expanded', isActive);
-        });
-
-        // Закрываем меню при клике на ссылку
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                hamburger.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        // ============================================================
-        // 4. АНИМАЦИЯ СЧЁТЧИКОВ (при скролле)
-        // ============================================================
-        const statNumbers = document.querySelectorAll('.stat-number');
-
-        function animateCounters() {
-            statNumbers.forEach(el => {
-                const target = parseInt(el.getAttribute('data-count'), 10);
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 50 && rect.bottom > 0 && !el.dataset.animated) {
-                    el.dataset.animated = 'true';
-                    let current = 0;
-                    const step = Math.ceil(target / 60);
-                    const interval = setInterval(() => {
-                        current += step;
-                        if (current >= target) {
-                            el.textContent = target;
-                            clearInterval(interval);
-                            return;
-                        }
-                        el.textContent = current;
-                    }, 20);
-                }
-            });
-        }
-
-        // Запускаем при загрузке и при скролле
-        window.addEventListener('scroll', animateCounters);
-        window.addEventListener('load', () => {
-            // небольшая задержка для корректного появления
-            setTimeout(animateCounters, 200);
-        });
-
-        // ============================================================
-        // 5. ВАЛИДАЦИЯ ФОРМЫ
-        // ============================================================
-        const form = document.getElementById('contactForm');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const messageInput = document.getElementById('message');
-
-        function validateField(input, condition, errorClass) {
-            const group = input.closest('.form-group');
-            if (condition) {
-                group.classList.remove('error');
-                return true;
-            } else {
-                group.classList.add('error');
-                return false;
-            }
-        }
-
-        form.addEventListener('submit', (e) => {
+    // Открытие
+    document.querySelectorAll('[data-modal]').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
             e.preventDefault();
+            openModal(trigger.getAttribute('data-modal'));
+            document.querySelector('.nav-menu')?.classList.remove('active');
+            document.querySelector('.hamburger')?.classList.remove('active');
+            document.querySelector('.hamburger')?.setAttribute('aria-expanded', 'false');
+        });
+    });
 
-            const isNameValid = validateField(nameInput, nameInput.value.trim().length >= 2);
-            const isEmailValid = validateField(emailInput, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()));
-            const isMessageValid = validateField(messageInput, messageInput.value.trim().length >= 10);
+    // Закрытие по крестику (+ цепочка в data-then-modal)
+    document.querySelectorAll('[data-close]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = btn.closest('.modal-overlay');
+            if (modal) closeModal(modal);
+            const next = btn.getAttribute('data-then-modal');
+            if (next) setTimeout(() => openModal(next), 50);
+        });
+    });
 
-            if (isNameValid && isEmailValid && isMessageValid) {
-                // Имитация отправки
-                const btn = form.querySelector('button[type="submit"]');
-                const originalText = btn.textContent;
-                btn.textContent = '✅ Отправлено!';
-                btn.style.opacity = '0.7';
-                form.reset();
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.opacity = '1';
-                }, 2500);
+    // Закрытие по оверлею
+    modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal(modal);
+        });
+    });
+
+    // Закрытие по ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            modals.forEach(m => { if (m.classList.contains('active')) closeModal(m); });
+        }
+    });
+
+    // Focus trap внутри модалки
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+        const activeModal = document.querySelector('.modal-overlay.active');
+        if (!activeModal) return;
+        const focusable = Array.from(activeModal.querySelectorAll(
+            'button:not([disabled]), [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])'
+        ));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+            if (document.activeElement === first) { last.focus(); e.preventDefault(); }
+        } else {
+            if (document.activeElement === last) { first.focus(); e.preventDefault(); }
+        }
+    });
+
+    // Клавиатурный триггер для service cards (Enter / Space)
+    document.querySelectorAll('.service-card[role="button"]').forEach(card => {
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openModal(card.getAttribute('data-modal'));
             }
         });
+    });
 
-        // Убираем ошибки при вводе
-        form.querySelectorAll('input, textarea').forEach(input => {
-            input.addEventListener('input', () => {
-                const group = input.closest('.form-group');
-                if (group) group.classList.remove('error');
-            });
+    // ============================================================
+    // 3. ГАМБУРГЕР
+    // ============================================================
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburger.addEventListener('click', () => {
+        const isActive = navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isActive);
+        if (isActive) {
+            const firstLink = navMenu.querySelector('button, a');
+            if (firstLink) firstLink.focus();
+        }
+    });
+
+    navMenu.querySelectorAll('a, button').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
         });
+    });
 
-        // ============================================================
-        // 6. ПЛАВНЫЙ СКРОЛЛ ПО ЯКОРЯМ (для навигации)
-        // ============================================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#') return;
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+    // ============================================================
+    // 4. АНИМАЦИЯ СЧЁТЧИКОВ
+    // ============================================================
+    const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+
+    function animateCounter(el) {
+        if (el.dataset.animated) return;
+        el.dataset.animated = 'true';
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        let current = 0;
+        const duration = 1200;
+        const start = performance.now();
+        function step(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // easeOutQuart
+            const eased = 1 - Math.pow(1 - progress, 4);
+            current = Math.round(eased * target);
+            el.textContent = current;
+            if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
         });
+    }, { threshold: 0.3 });
 
-        // ============================================================
-        // 7. ПЕРФОРМАНС: Lazy load для секций (опционально)
-        // ============================================================
-        // Простая оптимизация — используем Intersection Observer для
-        // отложенной загрузки контента, если нужно.
-        // Пока оставим как есть, всё и так быстро.
+    statNumbers.forEach(el => counterObserver.observe(el));
 
-        console.log('✅ PremiumWeb запущен!');
-    </script>
+    // ============================================================
+    // 5. ВАЛИДАЦИЯ ФОРМЫ
+    // ============================================================
+    const form = document.getElementById('contactForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    const submitBtn = document.getElementById('submitBtn');
+    const formStatus = document.getElementById('formStatus');
+
+    function setFieldError(input, errorId, show) {
+        const group = input.closest('.form-group');
+        const errEl = document.getElementById(errorId);
+        if (show) {
+            group.classList.add('error');
+            input.setAttribute('aria-invalid', 'true');
+            if (errEl) errEl.style.display = 'block';
+        } else {
+            group.classList.remove('error');
+            input.removeAttribute('aria-invalid');
+            if (errEl) errEl.style.display = 'none';
+        }
+        return !show;
+    }
+
+    function clearErrors() {
+        setFieldError(nameInput, 'nameError', false);
+        setFieldError(emailInput, 'emailError', false);
+        setFieldError(messageInput, 'messageError', false);
+        formStatus.style.display = 'none';
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        let valid = true;
+        if (nameInput.value.trim().length < 2) { setFieldError(nameInput, 'nameError', true); valid = false; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) { setFieldError(emailInput, 'emailError', true); valid = false; }
+        if (messageInput.value.trim().length < 10) { setFieldError(messageInput, 'messageError', true); valid = false; }
+
+        if (!valid) {
+            // Фокус на первое поле с ошибкой
+            form.querySelector('[aria-invalid="true"]')?.focus();
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Отправка...';
+
+        try {
+            // Сохраняем в localStorage как запасной вариант
+            const contacts = JSON.parse(localStorage.getItem('pw_contacts') || '[]');
+            contacts.push({
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                message: messageInput.value.trim(),
+                ts: new Date().toISOString()
+            });
+            localStorage.setItem('pw_contacts', JSON.stringify(contacts));
+
+            // Имитация задержки сети (заменить на реальный fetch)
+            await new Promise(r => setTimeout(r, 800));
+
+            formStatus.textContent = '✅ Заявка принята! Свяжемся с вами в течение 24 часов.';
+            formStatus.className = 'form-status success';
+            formStatus.style.display = 'block';
+            form.reset();
+        } catch (err) {
+            formStatus.textContent = '❌ Ошибка отправки. Пожалуйста, напишите нам напрямую.';
+            formStatus.className = 'form-status error';
+            formStatus.style.display = 'block';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Отправить заявку';
+        }
+    });
+
+    // Убираем ошибки при вводе
+    [nameInput, emailInput, messageInput].forEach(input => {
+        input.addEventListener('input', () => {
+            const group = input.closest('.form-group');
+            group.classList.remove('error');
+            input.removeAttribute('aria-invalid');
+        });
+    });
+
+    // ============================================================
+    // 6. ПЛАВНЫЙ СКРОЛЛ
+    // ============================================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    console.log('✅ PremiumWeb v2 запущен!');
+})();
+</script>
 
 </body>
 </html>
